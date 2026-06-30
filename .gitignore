@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ArcGIS
+*.lock
+
+# Raster data
+*.tif
+*.tiff
+
+# Vector data
+*.shp
+*.dbf
+*.shx
+*.prj
+*.cpg
+*.sbn
+*.sbx
+*.shp.xml
+
+# File geodatabases
+*.gdb/
+
+# VS Code
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
