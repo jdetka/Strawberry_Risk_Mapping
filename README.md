@@ -102,34 +102,48 @@ scripts/01_arcgis_preprocessing/config.py
 
 ## Workflow Stages
 
+## Workflow Stages
+
 ### 01 — ArcGIS Pro Preprocessing
 
-Preprocess UAV multispectral imagery into plant-level spatial datasets.
+Transform UAV multispectral imagery into plant-level canopy datasets.
 
-Outputs include:
+Major outputs include:
 
-- Clipped orthomosaics
+- Clipped multispectral orthomosaics
 - NDVI, NDRE, and Redness Index rasters
-- Plant polygons
-- Plant centroids
+- Plant polygons and centroids
 - Plant hexagons
-- Plant-level canopy metrics
+- Plant-level canopy metrics exported for statistical modeling
 
-### 02 — Python Processing
+---
 
-Integrate plant-level observations, perform quality control, and prepare longitudinal datasets for survival analysis.
+### 02 — Random Survival Forest Modeling
 
-### 03 — Survival Modeling
+Build longitudinal plant datasets, engineer temporal features, and develop leakage-safe Random Survival Forest models.
 
-Develop plant-level survival models in R using Random Survival Forests and associated analyses.
+Major tasks include:
 
-### 04 — Risk Mapping
+- Feature engineering
+- Plant-level train/test splitting
+- Per-flight clustering
+- Survival data formatting
+- Expanding-window Random Survival Forest modeling
+- Plant-level risk prediction
+- Export of spatial risk layers
 
-Project predicted survival probabilities back into geographic space to generate canopy decline risk maps.
+---
 
-### 05 — Figures and Tables
+### 03 — Post-processing and Visualization
 
-Generate publication-quality figures and tables used in the manuscript.
+Generate summary statistics, post hoc analyses, spatial products, and publication-quality figures.
+
+Major outputs include:
+
+- Risk summary tables
+- Post hoc fumigation analyses
+- Risk maps
+- Figures used in the accompanying publication
 
 ---
 
