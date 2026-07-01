@@ -39,10 +39,10 @@ The workflow combines:
 
 - UAV multispectral image acquisition
 - ArcGIS Pro geospatial preprocessing
-- Plant-level feature engineering
-- Python data processing
-- Survival modeling in R
-- Spatial prediction and visualization
+- Plant-level feature construction
+- Leakage-safe Random Survival Forest modeling
+- Spatial risk prediction
+- Statistical analysis and visualization
 
 This repository accompanies the published manuscript and is intended to support reproducible research and future development of plant-level disease risk modeling workflows.
 
@@ -52,35 +52,44 @@ This repository accompanies the published manuscript and is intended to support 
 
 | Folder | Purpose |
 |---|---|
-| `data/` | Placeholder for raw, interim, and processed data documentation. Large UAV datasets are not stored in this repository. |
+| `data/processed` | Processed datasets used as inputs to the Random Survival Forest workflow. Large UAV imagery, Pix4D outputs, and intermediate GIS products are not included due to their size. |
 | `docs/` | Supporting documentation and figures, including the workflow graphic. |
-| `scripts/01_arcgis_preprocessing/` | ArcGIS Pro / ArcPy preprocessing workflow for UAV imagery and plant-level spatial metrics. |
-| `scripts/02_python_processing/` | Python processing for plant-level feature construction, quality control, and longitudinal dataset preparation. |
-| `scripts/03_survival_modeling/` | R-based survival modeling workflow, including Random Survival Forest analyses. |
-| `scripts/04_risk_mapping/` | Spatial prediction and risk mapping outputs. |
-| `scripts/05_figures/` | Publication figures and tables. |
-| `src/` | Reusable project code, helper functions, or package-style utilities. |
+| `scripts/01_arcgis_preprocessing/` | ArcGIS Pro / ArcPy workflow for transforming UAV multispectral imagery into plant-level canopy metrics. |
+| `scripts/02_rsf_modeling/` | Leakage-safe Random Survival Forest workflow, including feature engineering, model training, validation, and spatial risk prediction. |
+| `scripts/03_results_and_reporting/` | Risk summaries, post hoc analyses, tables, and publication figures derived from the modeling results. |
+| `src/` | Reusable helper functions and utilities (future development). |
 | `archive/` | Development archive and earlier workflow versions retained for transparency. |
 
 ```text
 Strawberry_Risk_Mapping/
 │
 ├── data/
+│   ├── processed/
+│   └── derived/
+│
 ├── docs/
 │   └── images/
 │       └── workflow.png
+│
 ├── scripts/
 │   ├── 01_arcgis_preprocessing/
-│   ├── 02_python_processing/
-│   ├── 03_survival_modeling/
-│   ├── 04_risk_mapping/
-│   └── 05_figures/
+│   ├── 02_rsf_modeling/
+│   └── 03_results_and_reporting/
+│
 ├── src/
 ├── archive/
 ├── LICENSE
 ├── CITATION.cff
 └── README.md
 ```
+
+## Repository Status
+
+| Stage | Status |
+|--------|:------:|
+| ArcGIS preprocessing | ✅ |
+| RSF modeling | ✅ |
+| Results & reporting | 🚧 |
 
 ## Getting Started
 
@@ -91,16 +100,20 @@ Strawberry_Risk_Mapping/
 - R (for survival modeling)
 - Clone this repository
 
-### Configure the project
+### Configure the workflow
 
-Update the project root in:
+Each major workflow stage contains its own `config.py` file.
 
-```text
+Before running a notebook, update the appropriate configuration file to point to your local project directories.
+
+```
 scripts/01_arcgis_preprocessing/config.py
+scripts/02_rsf_modeling/config.py
+```
+
+Large UAV imagery and intermediate GIS products are not included in this repository because of their size.
 
 ---
-
-## Workflow Stages
 
 ## Workflow Stages
 
@@ -149,15 +162,13 @@ Major outputs include:
 
 ## Data Availability
 
-Large UAV imagery, Pix4D outputs, geodatabases, and intermediate raster products are **not included** because of their size.
-
 The repository contains:
 
 - Processing notebooks
 - Analysis scripts
 - Documentation
-- Configuration templates
-- Example datasets, where possible
+- Configuration files
+- Processed example datasets required to reproduce the statistical workflow
 
 ---
 
